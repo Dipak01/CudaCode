@@ -12,7 +12,10 @@ using namespace std;
 __global__
 void add(int n, float *x, float *y)
 {
-	int i = blockIdx.x*blockDim.x + threadIdx.x;
+	//blockID*blockDim + threadID
+	int i = blockIdx.x*blockDim.x + threadIdx.x; 
+
+	//threads are 16 but vectors are only 15. So to handle this extra thread we added this check.
 	if (i < n) {
 		y[i] = x[i] + y[i];
 	}
@@ -20,7 +23,7 @@ void add(int n, float *x, float *y)
 
 int main(void)
 {
-	int n = 1 << POWER;
+	int n = 1 << POWER; //left shift or 2^Power
 
 	float *x, *y, *d_x, *d_y;
 
@@ -39,6 +42,7 @@ int main(void)
 	}
 
 	//Copy memory from CPU to GPU 
+	//destination, source, size of mem we need to copy, direction
 	cudaMemcpy(d_x, x, n * sizeof(float), cudaMemcpyHostToDevice);
 	cudaMemcpy(d_y, y, n * sizeof(float), cudaMemcpyHostToDevice);
 
@@ -53,9 +57,12 @@ int main(void)
 
 
 	begin = clock();
+	
 	// Perform Addition on GPU
-
+	//ceiling done as default there is floor and 1 block of threads will be ignored.
+	//Alternate thing: n/thread + (n % thread != 0)
 	add << <(n + THREAD - 1) / THREAD, THREAD >> >(n, d_x, d_y);
+	
 	end = clock();
 	time_spent = (double)(end - begin) / CLOCKS_PER_SEC * 1000;
 	cout << "The running time for parallel addition is ";
