@@ -2,7 +2,7 @@
 #include <sys/time.h>
 
 //kernel code same as in problem statement
-__global__ void getMulAtomic_kernel(const int nz, const int * coord_row, const int * coord_col, const float * vec, const float * mat, float * res){
+__global__ void getMulAtomic_kernel(const int nz, const int * coord_row, const int * coord_col, const float * mat, const float * vec, float * res){
 	int threadId = blockDim.x * blockIdx.x + threadIdx.x;
 	int totalThread = blockDim.x * gridDim.x;
 	int iter = (nz % totalThread) ? (nz / totalThread + 1) : (nz / totalThread);
