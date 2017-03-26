@@ -86,8 +86,9 @@ void verify(MatrixInfo * mat, MatrixInfo * vec, MatrixInfo * res){
 			err = -1 * err;
 		}
 		float errPercent = (err / seqres) * 100;
-		if (errPercent > 1){
+		if (errPercent > 1 && err > 1){
 			printf("Error at %d\n", i);
+			printf("Error difference is %f\n", err);
 		}
 	}
 }
