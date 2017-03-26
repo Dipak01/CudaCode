@@ -1,8 +1,7 @@
 #include "genresult.cuh"
 #include <sys/time.h>
 
-//kernel code same as in problem statement
-__global__ void getMulAtomic_kernel(const int nz, const int * coord_row, const int * coord_col, const float * mat, const float * vec, float * res){
+__global__ void getMulDesign_kernel(const int nz, const int * coord_row, const int * coord_col, const float * mat, const float * vec, float * res){
 	int threadId = blockDim.x * blockIdx.x + threadIdx.x;
 	int totalThread = blockDim.x * gridDim.x;
 	int iter = (nz % totalThread) ? (nz / totalThread + 1) : (nz / totalThread);
@@ -19,7 +18,9 @@ __global__ void getMulAtomic_kernel(const int nz, const int * coord_row, const i
 	}
 }
 
-void getMulAtomic(MatrixInfo * mat, MatrixInfo * vec, MatrixInfo * res, int blockSize, int blockNum){
+void getMulDesign(MatrixInfo * mat, MatrixInfo * vec, MatrixInfo * res, int blockSize, int blockNum){
+	sortMatrix(mat);
+
 	int *d_coord_row, *d_coord_col;
 	float *d_vec, *d_mat, *d_res;
 
