@@ -151,3 +151,34 @@ seiveofEratosthenes/seiveofEratosthenes/Debug/seiveofEratosthenes.log
 seiveofEratosthenes/seiveofEratosthenes/kernel.cu
 seiveofEratosthenes/seiveofEratosthenes/seiveofEratosthenes.vcxproj
 seiveofEratosthenes/seiveofEratosthenes/vc120.pdb
+atomicSPMV/atomicSPMV.sdf
+atomicSPMV/atomicSPMV.sln
+atomicSPMV/atomicSPMV.v12.suo
+atomicSPMV/atomicSPMV/atomicSPMV.vcxproj
+atomicSPMV/atomicSPMV/cant.mtx
+atomicSPMV/atomicSPMV/kernel.cu
+atomicSPMV/atomicSPMV/spmv_segment - Copy.c
+atomicSPMV/atomicSPMV/vector.txt
+seiveofEratosthenes/seiveofEratosthenes/2 multiples marked.png
+seiveofEratosthenes/seiveofEratosthenes/CS513_Assignment_2-lesscopy.zip
+seiveofEratosthenes/seiveofEratosthenes/CS513_Assignment_2-lesscopy/README.md
+seiveofEratosthenes/seiveofEratosthenes/CS513_Assignment_2-lesscopy/benchmark_scaling.cu
+seiveofEratosthenes/seiveofEratosthenes/CS513_Assignment_2-lesscopy/primeFinderModified.cu
+seiveofEratosthenes/seiveofEratosthenes/CS513_Assignment_2-lesscopy/primefinder_basic.cu
+seiveofEratosthenes/seiveofEratosthenes/CS513_Assignment_2-lesscopy/primefinder_timed.cu
+seiveofEratosthenes/seiveofEratosthenes/RT comparisons.xlsx
+seiveofEratosthenes/seiveofEratosthenes/ReportAssignment2.pdf
+seiveofEratosthenes/seiveofEratosthenes/Seq vs Cuda RT.png
+seiveofEratosthenes/seiveofEratosthenes/kernelComments.cu
+seiveofEratosthenes/seiveofEratosthenes/primefinder_minimalcopy.cu
+test3/Makefile
+test3/genresult.c
+test3/genresult.cuh
+test3/main.c
+test3/mmio.c
+test3/mmio.h
+test3/spmv.cuh
+test3/spmv_atomic.c
+test3/spmv_design.c
+test3/spmv_segment.c
+test3/vector_generator.sh
