@@ -106,10 +106,17 @@ __global__ void putProduct_kernel(const int nz, const int * coord_row, const int
 
 	int threadId = blockDim.x * blockIdx.x + threadIdx.x;
 	int totalThread = blockDim.x * gridDim.x;
-	int iter = (nz % totalThread) ? (nz / totalThread + 1) : (nz / totalThread);
+	int loops = 0;
+	if (nz % totalThread == 0){
+		loops = nz / totalThread;
+	}
+	else{
+		loops = nz / totalThread + 1;
+	}
 
-	for (int i = 0; i < iter; i++) {
+	for (int i = 0; i < loops; i++) {
 		int dataId = threadId + i * totalThread;
+		//check so as to prevent extra threads
 		if (dataId < nz) {
 			//save product into vals shared memory
 			float data = mat[dataId];
@@ -167,8 +174,9 @@ void getMulScan(MatrixInfo * mat, MatrixInfo * vec, MatrixInfo * res, int blockS
 	struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC_RAW, &start);
 	putProduct_kernel << <blockNum, blockSize >> >(mat->nz, d_coord_row, d_coord_col, d_mat, d_vec, d_res);
+	cudaDeviceSynchronize();
     clock_gettime(CLOCK_MONOTONIC_RAW, &end);
-    printf("Segmented Kernel Time: %lu milli-seconds\n", 1000 * (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1000000);
+    printf("Segmented Kernel Time: %lu micro-seconds\n", 1000000 * (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1000000);
 
 	//copying result back
 	cudaMemcpy(res->val, d_res, mat->M * sizeof(float), cudaMemcpyDeviceToHost);
