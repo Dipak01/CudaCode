@@ -176,7 +176,7 @@ void getMulScan(MatrixInfo * mat, MatrixInfo * vec, MatrixInfo * res, int blockS
 	putProduct_kernel << <blockNum, blockSize >> >(mat->nz, d_coord_row, d_coord_col, d_mat, d_vec, d_res);
 	cudaDeviceSynchronize();
     clock_gettime(CLOCK_MONOTONIC_RAW, &end);
-    printf("Segmented Kernel Time: %lu micro-seconds\n", 1000000 * (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1000000);
+    printf("Segmented Kernel Time: %lu micro-seconds\n", 1000000 * (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1000);
 
 	//copying result back
 	cudaMemcpy(res->val, d_res, mat->M * sizeof(float), cudaMemcpyDeviceToHost);

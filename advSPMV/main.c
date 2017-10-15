@@ -178,13 +178,12 @@ int main(int argc, char ** argv){
 		printf("Verifying...");
 		int o = verify(matrix->nz, matrix->M, matrix->rIndex, matrix->cIndex, matrix->val, vector->val, product->val);
 		printf("\t %d Error rows found \n", o);
-		puts("Test failed!");
+		puts("Test passed!");
 		freeMatrixInfo(matrix);
 		freeMatrixInfo(vector);
-       		freeMatrixInfo(product);
-		return 1;
+       	freeMatrixInfo(product);
+		return 0;
 	}
-
 
 	freeMatrixInfo(matrix);
 	freeMatrixInfo(vector);
