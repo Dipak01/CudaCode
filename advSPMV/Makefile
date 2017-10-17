@@ -5,6 +5,9 @@ CC = /usr/local/cuda/bin/nvcc
 GCC = g++
 objects = mmio.o main.o genresult.o
 
+spmv: $(objects) 
+	$(CC) -arch=sm_30 $(objects) -o spmv
+
 all: $(objects) 
 	$(CC) -arch=sm_30 $(objects) -o spmv
 
