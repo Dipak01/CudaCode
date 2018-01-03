@@ -1,4 +1,7 @@
-# CudaCode
-Rutgers CS513 
+# Cuda Code
 
-Course book: http://ajuarna.staff.gunadarma.ac.id/Downloads/files/36922/%5Bbook%5D+The+Design+and+Analysis+of+Parallel+Algorithms+(Selim+G+Akl).pdf
+Contains parallel implementation of following algorithms:
+1. Prefix Sum 
+2. Seive of Eratosthenes (find prime numbers)
+3. Array arithemetic operations
+4. Sparse Matrix Vector Multiplication (spmv)
